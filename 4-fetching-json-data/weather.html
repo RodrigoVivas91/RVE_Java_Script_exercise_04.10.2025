@@ -92,22 +92,23 @@
                 console.log("---------------------")
                 console.log("PART 1...")
 
+                console.log("DATE:", data.properties.generatedAt)
 
-                var generatedDate = data.properties.generatedAt.split("T")[0]
-                console.log("DATE: " + generatedDate)
+                console.log("PERIODS:", data.properties.periods.length)
 
-                var periods = data.properties.periods
-                console.log("ALL PERIODS: ", periods.length)
-
-                var daytimePeriods = periods.filter(period => period.isDaytime)
+                var daytimePeriods = data.properties.periods.filter(function(period){
+                    return period.isDaytime == true
+                })
                 console.log("DAYTIME PERIODS:", daytimePeriods.length)
 
-                daytimePeriods.forEach(period => {
-                    var message = period.name + ": " + period.temperature + " " + period.temperatureUnit + degreeSymbol + " " + period.shortForecast
-                    //var message = `${period.name}: ${period.temperature}${degreeSymbol}${period.temperatureUnit} ${period.shortForecast}`
-                    console.log("...", message)
+                
+                daytimePeriods.forEach(function(p) {
+                    console.log("----")
+                    //console.log(p)
+                    //console.log(p.name, p.temperature, p.temperatureUnit)
+                    console.log(p.name, p.temperature + degreeSymbol + p.temperatureUnit)
+                    console.log(p.shortForecast)
                 })
-
 
 
                 console.log("---------------------")
